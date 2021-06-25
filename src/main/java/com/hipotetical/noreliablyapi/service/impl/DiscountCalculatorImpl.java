@@ -39,6 +39,6 @@ public class DiscountCalculatorImpl implements DiscountCalculator {
                 .discountedPayment(discountPayment)
                 .build();
 
-        return bugInserter.insertBug(response);
+        return response;
     }
 }

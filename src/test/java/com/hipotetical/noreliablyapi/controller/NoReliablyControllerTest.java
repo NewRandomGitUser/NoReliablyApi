@@ -37,17 +37,10 @@ public class NoReliablyControllerTest {
                 .build();
 
         Mockito.when(discountCalculator.execute(Mockito.any())).thenReturn(responseReference);
-
         final var realResponse = noReliablyController.calculate(request);
-
         Assertions.assertEquals(realResponse.getCourse(),responseReference.getCourse());;
         Assertions.assertEquals(realResponse.getPercentageDiscount(),responseReference.getPercentageDiscount());
         Assertions.assertEquals(realResponse.getDiscountedPayment(),responseReference.getDiscountedPayment());
         Assertions.assertEquals(realResponse.getMonthlyPayment(),responseReference.getMonthlyPayment());
     }
-
-
-
-
-
 }

@@ -1,0 +1,1 @@
+Deve ser criada uma interface para checar a condição, essa sim deve ser mockada nos testes

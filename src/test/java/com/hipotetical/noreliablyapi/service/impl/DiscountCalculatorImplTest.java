@@ -4,7 +4,6 @@ package com.hipotetical.noreliablyapi.service.impl;
 import com.hipotetical.noreliablyapi.controller.DiscountRequest;
 import com.hipotetical.noreliablyapi.controller.DiscountResponse;
 import com.hipotetical.noreliablyapi.service.DiscountCalculator;
-import com.hipotetical.noreliablyapi.service.impl.bugs.BugInserterImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

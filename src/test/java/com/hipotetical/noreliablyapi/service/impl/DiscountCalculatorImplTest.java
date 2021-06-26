@@ -1,6 +1,5 @@
 package com.hipotetical.noreliablyapi.service.impl;
 
-
 import com.hipotetical.noreliablyapi.controller.DiscountRequest;
 import com.hipotetical.noreliablyapi.controller.DiscountResponse;
 import com.hipotetical.noreliablyapi.service.DiscountCalculator;

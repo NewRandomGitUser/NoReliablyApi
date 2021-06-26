@@ -3,6 +3,7 @@ package com.hipotetical.noreliablyapi.service.impl;
 import com.hipotetical.noreliablyapi.controller.DiscountRequest;
 import com.hipotetical.noreliablyapi.controller.DiscountResponse;
 import com.hipotetical.noreliablyapi.service.DiscountCalculator;
+import com.hipotetical.noreliablyapi.service.impl.bugs.BugConditioning;
 import com.hipotetical.noreliablyapi.service.impl.data.DiscountDataFactory;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -39,6 +40,9 @@ public class DiscountCalculatorImpl implements DiscountCalculator {
                 .discountedPayment(discountPayment)
                 .build();
 
-        return bugInserter.insertBug(response);
+        if(BugConditioning.verify())
+            return bugInserter.insertBug(response);
+
+        return response;
     }
 }

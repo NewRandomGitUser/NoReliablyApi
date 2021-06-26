@@ -28,7 +28,7 @@ public class DiscountCalculatorImplTest {
     }
 
     @Test
-    @DisplayName("Deve retornar os valores certos sem nenhum Bug")
+    @DisplayName("Deve retornar os valores sem nenhum Bug")
     public void shouldReturnWithoutBugs() {
         final var request = DiscountRequest
                 .builder()
@@ -42,7 +42,9 @@ public class DiscountCalculatorImplTest {
                 .percentageDiscount(new BigDecimal(5.00))
                 .discountedPayment(new BigDecimal(190.00))
                 .build();
-        Mockito.when(bugInserter.insertBug(Mockito.any())).thenReturn(responseReference);
+
+        Mockito.when(bugInserter.execute(Mockito.any())).thenReturn(responseReference);
+
         final var response = discountCalculator.execute(request);
         Assertions.assertEquals(response.getCourse(),responseReference.getCourse());;
         Assertions.assertEquals(response.getPercentageDiscount(),responseReference.getPercentageDiscount());
@@ -50,6 +52,31 @@ public class DiscountCalculatorImplTest {
         Assertions.assertEquals(response.getMonthlyPayment(),responseReference.getMonthlyPayment());
     }
 
+    @Test
+    @DisplayName("Deve retornar os valores com o bug inserido")
+    public void shouldReturnInsertedBug() {
+        final var request = DiscountRequest
+                .builder()
+                .course("History")
+                .monthlyPayment(new BigDecimal(200.00))
+                .build();
+        final var responseReference = DiscountResponse
+                .builder()
+                .course("History")
+                .monthlyPayment(new BigDecimal(200.00))
+                .percentageDiscount(new BigDecimal(5.00))
+                .discountedPayment(new BigDecimal(390.00))
+                .build();
+
+        Mockito.when(bugInserter.execute(Mockito.any()))
+                .thenReturn(responseReference);
+
+        final var response = discountCalculator.execute(request);
+        Assertions.assertEquals(responseReference.getCourse(),response.getCourse());;
+        Assertions.assertEquals(responseReference.getPercentageDiscount(),response.getPercentageDiscount());
+        Assertions.assertEquals(responseReference.getDiscountedPayment(),response.getDiscountedPayment());
+        Assertions.assertEquals(responseReference.getMonthlyPayment(),response.getMonthlyPayment());
+    }
 
 
 }

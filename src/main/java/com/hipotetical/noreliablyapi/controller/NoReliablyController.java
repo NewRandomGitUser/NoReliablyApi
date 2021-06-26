@@ -17,8 +17,6 @@ public class NoReliablyController {
 
     @GetMapping
     DiscountResponse calculate(@ModelAttribute DiscountRequest request) {
-         return discountCalculator.execute(request);
+        return discountCalculator.execute(request);
     }
-
-
 }

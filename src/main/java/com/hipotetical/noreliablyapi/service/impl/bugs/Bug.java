@@ -1,17 +1,18 @@
 package com.hipotetical.noreliablyapi.service.impl.bugs;
 
+import com.hipotetical.noreliablyapi.controller.DiscountResponse;
+import lombok.Builder;
 import lombok.extern.slf4j.Slf4j;
 
 import java.time.LocalTime;
 
 @Slf4j
-public class BugConditioning {
-    public static boolean verify() {
-        final var currentSeconds = LocalTime.now().getSecond();
-        if (currentSeconds % 5 == 4) {
-            log.info("Bug será inserido");
-            return true;
-        }
-        return false;
+@Builder
+public class Bug {
+    public DiscountResponse insertBug(DiscountResponse response) {
+        response.setDiscountedPayment(
+                response.getDiscountedPayment()
+                        .add(response.getMonthlyPayment()));
+        return response;
     }
 }
